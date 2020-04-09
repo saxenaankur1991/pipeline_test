@@ -1,28 +1,30 @@
-pipeline {
-	agent any
-		stages {
-			stage('One') {
-				steps {
-                    echo 'Hi, this is ankur saxena'
-					}
-                }
-                stage('Two') {
-					steps {
-						input('Do you want to proceed?')
-					}
-                }
-                stage('Three') {
-					when {
-						not {
-                            branch "master"
-                       }
-					}
-				}	
-                stage('Four'){
-                    steps {
-						echo 'Hi, this is ankur saxena'
-					}
-                 }
-        
-               }
+node {
+ 	// Clean workspace before doing anything
+    deleteDir()
+
+    try {
+        stage ('Clone') {
+        	checkout scm
+        }
+        stage ('Build') {
+        	sh "echo 'shell scripts to build project...'"
+        }
+        stage ('Tests') {
+	        parallel 'static': {
+	            sh "echo 'shell scripts to run static tests...'"
+	        },
+	        'unit': {
+	            sh "echo 'shell scripts to run unit tests...'"
+	        },
+	        'integration': {
+	            sh "echo 'shell scripts to run integration tests...'"
+	        }
+        }
+      	stage ('Deploy') {
+            sh "echo 'shell scripts to deploy to server...'"
+      	}
+    } catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
+    }
 }
