@@ -4,24 +4,24 @@ node {
 
     try {
         stage ('Clone') {
-        	checkout scm
+        	steps {
+                    echo 'Hi, this is ankur saxena'
+					}
         }
         stage ('Build') {
-        	sh "echo 'shell scripts to build project...'"
+        	steps {
+                    echo 'Hi, this is ankur saxena'
+					}
         }
         stage ('Tests') {
-	        parallel 'static': {
-	            sh "echo 'shell scripts to run static tests...'"
-	        },
-	        'unit': {
-	            sh "echo 'shell scripts to run unit tests...'"
-	        },
-	        'integration': {
-	            sh "echo 'shell scripts to run integration tests...'"
-	        }
+	        steps {
+                    echo 'Hi, this is ankur saxena'
+					}
         }
       	stage ('Deploy') {
-            sh "echo 'shell scripts to deploy to server...'"
+            steps {
+                    echo 'Hi, this is ankur saxena'
+					}
       	}
     } catch (err) {
         currentBuild.result = 'FAILED'
