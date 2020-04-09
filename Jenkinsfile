@@ -1,30 +1,21 @@
-node {
- 	// Clean workspace before doing anything
-    deleteDir()
+pipeline {
+    agent any
 
-    try {
-        stage ('Clone') {
-        	steps {
-                    echo 'Hi, this is ankur saxena'
-					}
-        }
-        stage ('Build') {
-        	steps {
-                    echo 'Hi, this is ankur saxena'
-					}
-        }
-        stage ('Tests') {
-	        steps {
-                    echo 'Hi, this is ankur saxena'
-					}
-        }
-      	stage ('Deploy') {
+    stages {
+        stage('Build') {
             steps {
-                    echo 'Hi, this is ankur saxena'
-					}
-      	}
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
