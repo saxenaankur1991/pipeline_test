@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		message: "Attention @here ${env.JOB_NAME} #${env.BUILD_NUMBER} has started."
-                color: 'RED'
                 echo 'Building..'
             }
         }
@@ -25,8 +23,6 @@ pipeline {
             deleteDir() /* clean up our workspace */
         }
         success {
-	    color: 'good'
-            message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
             echo 'I succeeeded!'
         }
         unstable {
