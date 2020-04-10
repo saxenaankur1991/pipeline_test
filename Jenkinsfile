@@ -25,7 +25,7 @@ pipeline {
             deleteDir() /* clean up our workspace */
         }
         success {
-	    color: 'good',
+	    color: 'good'
             message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
             echo 'I succeeeded!'
         }
