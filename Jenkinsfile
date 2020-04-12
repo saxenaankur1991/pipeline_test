@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                bat "c://Users/ankur.saxena/Desktop/bat_file/abc.bat"
             }
         }
         stage('Test') {
