@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building...'
                 bat "c://Users/ankur.saxena/Desktop/bat_file/abc.bat"
             }
         }
